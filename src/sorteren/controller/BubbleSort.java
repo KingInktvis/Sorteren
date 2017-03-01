@@ -19,7 +19,7 @@ public class BubbleSort implements Sorting {
 
     @Override
     public void autoAction() {
-
+        System.out.print("auto \n");
     }
 
 
