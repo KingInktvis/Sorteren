@@ -7,6 +7,7 @@ import javafx.fxml.Initializable;
  */
 interface Sorting extends Initializable {
 
-    void next();
+    void nextAction();
 
+    void autoAction();
 }
