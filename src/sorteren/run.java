@@ -1,5 +1,6 @@
 package sorteren;
 
+import sorteren.model.DataList;
 import sorteren.model.Gui;
 
 /**
@@ -7,6 +8,7 @@ import sorteren.model.Gui;
  */
 public class run {
     public static void main(String args[]){
+        new DataList();
         new Gui().go(args);
     }
 }

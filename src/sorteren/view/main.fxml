@@ -18,7 +18,7 @@
          <content>
             <BorderPane prefHeight="200.0" prefWidth="200.0">
                <center>
-                  <BarChart BorderPane.alignment="CENTER">
+                  <BarChart title="Unsorted array" BorderPane.alignment="CENTER">
                     <xAxis>
                       <CategoryAxis side="BOTTOM" />
                     </xAxis>
