@@ -7,11 +7,11 @@ import java.util.Random;
  * Created by rik on 3/1/17.
  */
 public class DataList {
-    int size = 10;
-    int limit = 100;
-    private int[] list;
+    static int size = 10;
+    static int limit = 100;
+    static final int[] list;
 
-    public DataList () {
+    static {
         list = new int[size];
         Random rand;
         int num;
@@ -22,7 +22,7 @@ public class DataList {
         }
     }
 
-    public int[] getList() {
+    public static int[] getList() {
         return list;
     }
 
