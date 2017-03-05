@@ -122,6 +122,7 @@ public class BubbleSort implements Sorting {
                         compareIndex = 0;
                         done = true;
                         if (goodAfter > 1) goodAfter--;
+                        changeColor(goodAfter, "green");
                     } else {
                         compareIndex++;
                     }
