@@ -4,8 +4,8 @@ package sorteren.controller;
  * Created by rik on 3/5/17.
  */
 public class AutoRun implements Runnable {
-    private Sorting sort;
-    public AutoRun(Sorting sort){
+    private ChartTabController sort;
+    public AutoRun(ChartTabController sort){
         this.sort = sort;
     }
     @Override
