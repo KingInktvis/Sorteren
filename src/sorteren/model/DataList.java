@@ -8,7 +8,7 @@ import java.util.Random;
  */
 public class DataList {
     public static final int[] list;
-    public static final int size = 20;
+    public static final int size = 10;
 
     static {
         list = new int[size];

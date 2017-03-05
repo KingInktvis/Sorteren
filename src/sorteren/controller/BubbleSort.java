@@ -28,10 +28,12 @@ public class BubbleSort implements Sorting {
     private XYChart.Series series;
 
     private int compareIndex = 0;
-    private int sorted;
+    private int goodAfter;
     private int step = 1;
     public boolean auto;
     private AutoRun thread;
+    private Boolean done;
+    private Boolean complete = false;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -39,6 +41,7 @@ public class BubbleSort implements Sorting {
         series = new XYChart.Series();
         series.setName("values");
         chart.getData().add(series);
+        goodAfter = DataList.size;
         drawBars();
         thread = new AutoRun(this);
         new Thread(thread).start();
@@ -46,8 +49,7 @@ public class BubbleSort implements Sorting {
 
     @Override
     public void nextAction() {
-        nextStep();
-        System.out.print("next");
+        if (!auto) nextStep();
     }
 
     @Override
@@ -88,31 +90,46 @@ public class BubbleSort implements Sorting {
     }
 
     public void nextStep(){
-        switch (step) {
-            case 1:
-                changeColor(compareIndex, "blue");
-                changeColor(compareIndex + 1, "blue");
-                break;
-            case 2:
-                if (list[compareIndex] > list[compareIndex +1]){
-                    changeColor(compareIndex, "red");
-                    changeColor(compareIndex + 1, "red");
-                }else {
-                    changeColor(compareIndex, "green");
-                    changeColor(compareIndex + 1, "green");
-                    step++;
-                }
-                break;
-            case 3:
-                switchIndexes(compareIndex, compareIndex + 1);
-                break;
-            case 4:
-                changeColor(compareIndex, "grey");
-                changeColor(compareIndex + 1, "grey");
-                compareIndex = compareIndex == DataList.size - 2 ? 0 : compareIndex + 1;
-                break;
+        if (!complete) {
+            switch (step) {
+                case 1:
+                    changeColor(compareIndex, "blue");
+                    changeColor(compareIndex + 1, "blue");
+                    break;
+                case 2:
+                    if (list[compareIndex] > list[compareIndex + 1]) {
+                        changeColor(compareIndex, "red");
+                        changeColor(compareIndex + 1, "red");
+                    } else {
+                        changeColor(compareIndex, "green");
+                        changeColor(compareIndex + 1, "green");
+                        step++;
+                    }
+                    break;
+                case 3:
+                    switchIndexes(compareIndex, compareIndex + 1);
+                    done = false;
+                    break;
+                case 4:
+                    changeColor(compareIndex, "grey");
+                    changeColor(compareIndex + 1, "grey");
+                    if (compareIndex + 2 >= goodAfter) {
+                        if (done) {
+                            setAllDone();
+                            auto = false;
+                            complete = true;
+                        }
+                        compareIndex = 0;
+                        done = true;
+                        if (goodAfter > 1) goodAfter--;
+                    } else {
+                        compareIndex++;
+                    }
+//                compareIndex = compareIndex == sorted - 2 ? 0 : compareIndex + 1;
+                    break;
+            }
+            step = step == 4 ? 1 : step + 1;
         }
-        step = step == 4 ? 1 : step + 1;
     }
 
     @Override
@@ -120,7 +137,11 @@ public class BubbleSort implements Sorting {
         return auto;
     }
 
-
+    private void setAllDone(){
+        for (int i = 0; i < DataList.size; i++){
+            changeColor(i, "green");
+        }
+    }
 /*
 * source: https://gist.github.com/khaledLela/6071422
 * */
