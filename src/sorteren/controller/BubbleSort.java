@@ -26,34 +26,33 @@ public class BubbleSort implements Sorting {
     @FXML
     private BarChart chart;
     private XYChart.Series series;
+    private int compareIndex = 0;
+    private int sorted;
+    private int step = 1;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         list = DataList.list.clone();
         series = new XYChart.Series();
         series.setName("values");
-        //series.getData().add(new XYChart.Data("Desktop", 567));
         chart.getData().add(series);
-
         drawBars();
-
     }
 
     @Override
     public void nextAction() {
-        switchIndexes(1,2);
+        nextStep();
+        System.out.print("next");
     }
 
     @Override
     public void autoAction() {
-        System.out.print("auto \n");
-        changeValueOf(69, 1);
-        changeColor();
+        changeColor(5, "black");
     }
-    private void changeColor(){
-        Node node = bars.get(0).getNode();
+    private void changeColor(int index, String color){
+        Node node = bars.get(index).getNode();
         if (node == null){System.out.print("fuck");}
-        node.setStyle("-fx-bar-fill: firebrick;");
+        node.setStyle("-fx-bar-fill: " + color + ";");
     }
     private void changeValueOf(int newValue, int index){
         bars.get(index).setYValue(newValue);
@@ -79,8 +78,34 @@ public class BubbleSort implements Sorting {
     }
 
     private void nextStep(){
-
+        switch (step) {
+            case 1:
+                changeColor(compareIndex, "blue");
+                changeColor(compareIndex + 1, "blue");
+                break;
+            case 2:
+                if (list[compareIndex] > list[compareIndex +1]){
+                    changeColor(compareIndex, "red");
+                    changeColor(compareIndex + 1, "red");
+                }else {
+                    changeColor(compareIndex, "green");
+                    changeColor(compareIndex + 1, "green");
+                    step++;
+                }
+                break;
+            case 3:
+                switchIndexes(compareIndex, compareIndex + 1);
+                break;
+            case 4:
+                changeColor(compareIndex, "grey");
+                changeColor(compareIndex + 1, "grey");
+                compareIndex = compareIndex == DataList.size - 2 ? 1 : compareIndex + 1;
+                break;
+        }
+        step = step == 4 ? 1 : step + 1;
     }
+
+
 /*
 * source: https://gist.github.com/khaledLela/6071422
 * */
