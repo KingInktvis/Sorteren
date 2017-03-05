@@ -14,7 +14,7 @@
     <content>
         <BorderPane prefHeight="200.0" prefWidth="200.0">
                         <center>
-                           <BarChart BorderPane.alignment="CENTER">
+                           <BarChart BorderPane.alignment="CENTER" fx:id="chart">
                              <xAxis>
                                <CategoryAxis side="BOTTOM" />
                              </xAxis>

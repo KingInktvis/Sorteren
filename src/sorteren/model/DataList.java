@@ -7,10 +7,10 @@ import java.util.Random;
  * Created by rik on 3/1/17.
  */
 public class DataList {
-    private static final int[] list;
+    public static final int[] list;
+    public static final int size = 20;
 
     static {
-        int size = 10;
         list = new int[size];
         Random rand;
         int num;
@@ -21,9 +21,4 @@ public class DataList {
             list[i] = num;
         }
     }
-
-    public static int[] getList() {
-        return list;
-    }
-
 }
