@@ -26,9 +26,12 @@ public class BubbleSort implements Sorting {
     @FXML
     private BarChart chart;
     private XYChart.Series series;
+
     private int compareIndex = 0;
     private int sorted;
     private int step = 1;
+    public boolean auto;
+    private AutoRun thread;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -37,6 +40,8 @@ public class BubbleSort implements Sorting {
         series.setName("values");
         chart.getData().add(series);
         drawBars();
+        thread = new AutoRun(this);
+        new Thread(thread).start();
     }
 
     @Override
@@ -47,7 +52,8 @@ public class BubbleSort implements Sorting {
 
     @Override
     public void autoAction() {
-        changeColor(5, "black");
+        switchAutoRun();
+
     }
     private void changeColor(int index, String color){
         Node node = bars.get(index).getNode();
@@ -77,7 +83,11 @@ public class BubbleSort implements Sorting {
         }
     }
 
-    private void nextStep(){
+    public void switchAutoRun(){
+        auto = auto ? false : true;
+    }
+
+    public void nextStep(){
         switch (step) {
             case 1:
                 changeColor(compareIndex, "blue");
@@ -99,10 +109,15 @@ public class BubbleSort implements Sorting {
             case 4:
                 changeColor(compareIndex, "grey");
                 changeColor(compareIndex + 1, "grey");
-                compareIndex = compareIndex == DataList.size - 2 ? 1 : compareIndex + 1;
+                compareIndex = compareIndex == DataList.size - 2 ? 0 : compareIndex + 1;
                 break;
         }
         step = step == 4 ? 1 : step + 1;
+    }
+
+    @Override
+    public Boolean getAuto() {
+        return auto;
     }
 
 

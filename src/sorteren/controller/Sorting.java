@@ -10,4 +10,8 @@ interface Sorting extends Initializable {
     void nextAction();
 
     void autoAction();
+
+    void nextStep();
+
+    Boolean getAuto();
 }
