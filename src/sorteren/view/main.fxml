@@ -13,6 +13,7 @@
 
 <TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1">
   <tabs>
+      <fx:include source="unsorted.fxml" />
     <fx:include source="bubblesort.fxml" />
     <Tab text="Untitled Tab 1">
          <content>
