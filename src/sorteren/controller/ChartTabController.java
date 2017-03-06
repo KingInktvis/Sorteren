@@ -5,6 +5,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.XYChart;
+import javafx.scene.control.Button;
 import sorteren.model.DataList;
 
 import java.net.URL;
@@ -20,6 +21,8 @@ public class ChartTabController implements Initializable{
     protected int[] list;
     @FXML
     private BarChart chart;
+    @FXML
+    protected Button autoBtn;
     protected XYChart.Series series;
     boolean auto;
     private AutoRun thread;
@@ -61,6 +64,12 @@ public class ChartTabController implements Initializable{
 
     protected void switchAutoRun(){
         auto = !auto;
+        if (auto){
+            autoBtn.setText("stop");
+        }else {
+            autoBtn.setText("start");
+        }
+
     }
 
     public void nextAction() {
