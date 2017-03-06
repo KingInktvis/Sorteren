@@ -25,7 +25,6 @@ public class ChartTabController implements Initializable{
     protected Button autoBtn;
     protected XYChart.Series series;
     boolean auto;
-    private AutoRun thread;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -34,8 +33,10 @@ public class ChartTabController implements Initializable{
         series.setName("values");
         chart.getData().add(series);
         drawBars();
-        thread = new AutoRun(this);
-        new Thread(thread).start();
+        AutoRun run = new AutoRun(this);
+        Thread thread = new Thread(run);
+        thread.setDaemon(true);
+        thread.start();
     }
 
     private void drawBars() {
@@ -92,5 +93,20 @@ public class ChartTabController implements Initializable{
         for (int i = 0; i < DataList.size; i++){
             changeColor(i, "green");
         }
+    }
+
+    protected void switchIndexTo(int target, int current) {
+        if (target > current) {
+            while (current != target) {
+                switchIndexes(current, current + 1);
+                current++;
+            }
+        }else {
+            while (current != target) {
+                switchIndexes(current, current - 1);
+                current--;
+            }
+        }
+
     }
 }

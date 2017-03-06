@@ -15,7 +15,7 @@ public class AutoRun implements Runnable {
                 sort.nextStep();
             }
             try {
-                Thread.sleep(500);
+                Thread.sleep(200);
             }catch (InterruptedException e){
                 System.out.println("rip");
             }
