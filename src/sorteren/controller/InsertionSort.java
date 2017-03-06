@@ -93,7 +93,6 @@ public class InsertionSort extends ChartTabController {
         step = 0;
         incrementSorted();
         toSort++;
-
     }
 
     private void incrementCompare(){
