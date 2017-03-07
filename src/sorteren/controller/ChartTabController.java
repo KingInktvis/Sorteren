@@ -15,6 +15,7 @@ import java.util.ResourceBundle;
 /**
  * Created by rik on 3/5/17.
  */
+//TODO Split this class in an Chart initialization and a sort facilitating class
 public class ChartTabController implements Initializable{
 
     protected ArrayList<XYChart.Data> bars = new ArrayList<>();
