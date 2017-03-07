@@ -16,5 +16,6 @@
       <fx:include source="unsorted.fxml" />
       <fx:include source="bubblesort.fxml" />
         <fx:include source="insertionsort.fxml" />
+        <fx:include source="quicksort.fxml" />
     </tabs>
 </TabPane>

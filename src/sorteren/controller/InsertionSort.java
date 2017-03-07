@@ -47,43 +47,6 @@ public class InsertionSort extends ChartTabController {
             }
             step = step == 4 ? 1 : step + 1;
         }
-
-//        if (!done) {
-//            switch (step) {
-//                case 1:
-//                    compare = 0;
-//                    for (int i = 0; i <= sorted; i++) {
-//                        changeColor(i, "green");
-//                    }
-//                    break;
-//                case 2:
-//                    changeColor(sorted + 1, "red");
-//                    break;
-//                case 3:
-//                    changeColor(compare, "blue");
-//                    break;
-//                case 4:
-//                    if (compare == sorted + 1 || list[sorted + 1] == list[compare]){
-//                        step = 0;
-//                        incrementSorted();
-//                        compare = 0;
-//                    }else if (list[sorted + 1] < list[compare]) {
-//                        changeColor(compare, "red");
-//                    }else {
-//                        changeColor(compare, "green");
-//                        compare++;
-//                        step = 2;
-//                    }
-//                    break;
-//                case 5:
-//                    switchIndexTo(sorted + 1, compare);
-//                    incrementSorted();
-//                    compare = 0;
-//                    break;
-//            }
-//            step = step == 5 ? 1 : step + 1;
-//        }
-
     }
 
     private void nextToSort(){
