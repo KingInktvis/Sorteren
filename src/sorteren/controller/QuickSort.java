@@ -75,15 +75,16 @@ public class QuickSort extends ChartTabController{
         changeColor(pivot, "green");
         boolean con = true;
         int i = 0;
-        while (con && !done) {
+        printSorted();
+        while (con) {
             if (i == DataList.size){
                 done = true;
 //                setAllSortedGreen();
-            }else if (!sorted[i]){
+            }else if (sorted[i] == false){
                 pivot = i;
                 sorted[pivot] = true;
                 step = 0;
-                compare = 0;
+                compare = pivot;
                 incrementCompare();
                 con = false;
             }
@@ -118,7 +119,7 @@ public class QuickSort extends ChartTabController{
     private void printSorted(){
         System.out.println("start");
         for (int i = 0; i < DataList.size; i++){
-            System.out.println(sorted[i]);
+            System.out.println(i + " " + sorted[i]);
         }
         System.out.println("stop");
     }
