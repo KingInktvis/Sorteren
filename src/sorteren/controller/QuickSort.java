@@ -46,8 +46,8 @@ public class QuickSort extends ChartTabController{
                     incrementCompare();
                     break;
             }
+            step = step == 4 ? 1 : step + 1;
         }
-        step = step == 4 ? 1 : step + 1;
     }
 
     private void incrementPivotIndex() {
@@ -71,7 +71,7 @@ public class QuickSort extends ChartTabController{
         boolean con = true;
         int i = 0;
         while (con) {
-            if (i == DataList.size){
+            if (i >= DataList.size || i < 0){ //Don't know why but 'i<0' helps to get rid of array out of bound runtime error.
                 done = true;
             }else if (sorted[i] == false){
                 pivot = i;
