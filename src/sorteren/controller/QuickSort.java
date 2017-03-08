@@ -21,15 +21,14 @@ public class QuickSort extends ChartTabController{
         if (!done){
             switch (step) {
                 case 1:
+//                    printSorted();
                     changeColor(pivot, "blue");
-
-                    System.out.print(pivot);
                     break;
                 case 2:
                     changeColor(compare, "purple");
-//                    if(sorted[compare]) {
-//                        changePivot();
-//                    }
+                    if(sorted[compare]) {
+                        changePivot();
+                    }
                     break;
                 case 3:
                     if (list[pivot] < list[compare]) {
@@ -41,13 +40,14 @@ public class QuickSort extends ChartTabController{
                     }
                     break;
                 case 4:
-                    changeColor(pivot, "grey");
                     switchIndexTo(pivot, compare);
+                    changeColor(pivot, "grey");
 //                    incrementPivotIndex();
                     pivot++;
                     changeColor(pivot, "blue");
                     incrementCompare();
-                    setAllSortedGreen();
+//                    setAllSortedGreen();
+//                    printSorted();
                     break;
             }
         }
@@ -62,7 +62,11 @@ public class QuickSort extends ChartTabController{
 
     private void incrementCompare(){
         compare++;
-        if (compare == DataList.size || sorted[compare]) {
+
+        if (compare == DataList.size) {
+            changePivot();
+//            System.out.println(sorted[compare]);
+        }else if (sorted[compare] == true){
             changePivot();
         }
     }
@@ -71,17 +75,20 @@ public class QuickSort extends ChartTabController{
         changeColor(pivot, "green");
         boolean con = true;
         int i = 0;
-        while (con) {
-            if (!sorted[i]){
+        while (con && !done) {
+            if (i == DataList.size){
+                done = true;
+//                setAllSortedGreen();
+            }else if (!sorted[i]){
                 pivot = i;
+                sorted[pivot] = true;
                 step = 0;
-                compare = pivot + 1;
-                i = DataList.size;
+                compare = 0;
+                incrementCompare();
                 con = false;
             }
             i++;
         }
-
     }
 
     private void initSorted(){
@@ -89,7 +96,6 @@ public class QuickSort extends ChartTabController{
         sorted[0] = true;
         for (int i = 1; i < DataList.size; i++) {
             sorted[i] = false;
-
         }
     }
 
@@ -105,8 +111,15 @@ public class QuickSort extends ChartTabController{
     protected void switchIndexes(int index1, int index2){
         super.switchIndexes(index1, index2);
         boolean temp = sorted[index1];
-        sorted[index2] = sorted[index1];
-        sorted[index1] = temp;
-        System.out.println(temp);
+        sorted[index1] = sorted[index2];
+        sorted[index2] = temp;
+    }
+
+    private void printSorted(){
+        System.out.println("start");
+        for (int i = 0; i < DataList.size; i++){
+            System.out.println(sorted[i]);
+        }
+        System.out.println("stop");
     }
 }
