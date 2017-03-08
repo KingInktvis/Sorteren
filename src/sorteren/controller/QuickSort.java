@@ -18,36 +18,35 @@ public class QuickSort extends ChartTabController{
 
     @Override
     public void nextStep(){
-        if (!done){
-            switch (step) {
-                case 1:
-                    changeColor(pivot, "blue");
-                    break;
-                case 2:
-                    changeColor(compare, "purple");
-                    if(sorted[compare]) {
-                        changePivot();
-                    }
-                    break;
-                case 3:
-                    if (list[pivot] < list[compare]) {
-                        changeColor(compare, "grey");
-                        incrementCompare();
-                        step = 1;
-                    }else {
-                        changeColor(compare, "red");
-                    }
-                    break;
-                case 4:
-                    switchIndexTo(pivot, compare);
-                    changeColor(pivot, "grey");
-                    pivot++;
-                    changeColor(pivot, "blue");
+        if (done){return;}
+        switch (step) {
+            case 1:
+                changeColor(pivot, "blue");
+                break;
+            case 2:
+                changeColor(compare, "purple");
+                if(sorted[compare]) {
+                    changePivot();
+                }
+                break;
+            case 3:
+                if (list[pivot] < list[compare]) {
+                    changeColor(compare, "grey");
                     incrementCompare();
-                    break;
-            }
-            step = step == 4 ? 1 : step + 1;
+                    step = 1;
+                }else {
+                    changeColor(compare, "red");
+                }
+                break;
+            case 4:
+                switchIndexTo(pivot, compare);
+                changeColor(pivot, "grey");
+                pivot++;
+                changeColor(pivot, "blue");
+                incrementCompare();
+                break;
         }
+        step = step == 4 ? 1 : step + 1;
     }
 
     private void incrementPivotIndex() {
@@ -61,28 +60,24 @@ public class QuickSort extends ChartTabController{
 
         if (compare == DataList.size) {
             changePivot();
-        }else if (sorted[compare] == true){
+        }else if (sorted[compare]){
             changePivot();
         }
     }
 
     private void changePivot() {
         changeColor(pivot, "green");
-        boolean con = true;
-        int i = 0;
-        while (con) {
-            if (i >= DataList.size || i < 0){ //Don't know why but 'i<0' helps to get rid of array out of bound runtime error.
-                done = true;
-            }else if (sorted[i] == false){
+        for (int i = 0; i < DataList.size; i++) {
+            if (!sorted[i]){
                 pivot = i;
                 sorted[pivot] = true;
                 step = 0;
                 compare = pivot;
                 incrementCompare();
-                con = false;
+                return;
             }
-            i++;
         }
+        done = true;
     }
 
     private void initSorted(){
