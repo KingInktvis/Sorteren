@@ -5,7 +5,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.XYChart;
-import javafx.scene.control.Button;
 import sorteren.model.DataList;
 
 import java.net.URL;
@@ -34,11 +33,9 @@ public class ChartTabController implements Initializable{
     }
 
     private void drawBars() {
-//        chart.getData().clear();
         for (int i = 0; i < DataList.size; i++) {
             XYChart.Data<String, Number> data = new XYChart.Data<String, Number>(Integer.toString(i)+"|"+Integer.toString(list[i]), list[i]);
             bars.add(data);
-            //source: https://gist.github.com/khaledLela/6071422
             series.getData().add(data);
         }
     }

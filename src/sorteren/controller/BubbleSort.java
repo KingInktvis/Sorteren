@@ -1,7 +1,5 @@
 package sorteren.controller;
 
-import javafx.scene.Node;
-import javafx.scene.chart.XYChart;
 import sorteren.model.DataList;
 
 import java.net.URL;
@@ -62,7 +60,6 @@ public class BubbleSort extends SortInterface {
                 } else {
                     compareIndex++;
                 }
-//                compareIndex = compareIndex == sorted - 2 ? 0 : compareIndex + 1;
                 break;
         }
         step = step == 4 ? 1 : step + 1;

@@ -4,8 +4,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import sorteren.model.DataList;
 
-import java.security.PublicKey;
-
 /**
  * Created by rik on 9-3-17.
  */
