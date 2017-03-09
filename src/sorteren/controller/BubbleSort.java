@@ -10,7 +10,7 @@ import java.util.ResourceBundle;
 /**
  * Created by rik on 2/28/17.
  */
-public class BubbleSort extends ChartTabController {
+public class BubbleSort extends SortInterface {
 
     private int compareIndex = 0;
     private int goodAfter;

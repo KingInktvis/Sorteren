@@ -5,7 +5,7 @@ import sorteren.model.DataList;
 /**
  * Created by rik on 7-3-17.
  */
-public class QuickSort extends ChartTabController{
+public class QuickSort extends SortInterface{
     private boolean done = false;
     private int step = 1;
     private int pivot = 0;

@@ -15,17 +15,14 @@ import java.util.ResourceBundle;
 /**
  * Created by rik on 3/5/17.
  */
-//TODO Split this class in an Chart initialization and a sort facilitating class
+
 public class ChartTabController implements Initializable{
 
-    protected ArrayList<XYChart.Data> bars = new ArrayList<>();
     protected int[] list;
+    protected ArrayList<XYChart.Data> bars = new ArrayList<>();
     @FXML
     private BarChart chart;
-    @FXML
-    protected Button autoBtn;
     protected XYChart.Series series;
-    boolean auto;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -34,10 +31,6 @@ public class ChartTabController implements Initializable{
         series.setName("values");
         chart.getData().add(series);
         drawBars();
-        AutoRun run = new AutoRun(this);
-        Thread thread = new Thread(run);
-        thread.setDaemon(true);
-        thread.start();
     }
 
     private void drawBars() {
@@ -50,64 +43,16 @@ public class ChartTabController implements Initializable{
         }
     }
 
-    protected void switchIndexes(int index1, int index2){
-        int temp = list[index1];
-        list[index1] = list[index2];
-        list[index2] = temp;
-        bars.get(index1).setYValue(list[index1]);
-        bars.get(index2).setYValue(list[index2]);
-    }
-
     protected void changeColor(int index, String color){
         Node node = bars.get(index).getNode();
         if (node == null){System.out.print("fuck");}
         node.setStyle("-fx-bar-fill: " + color + ";");
     }
 
-    protected void switchAutoRun(){
-        auto = !auto;
-        if (auto){
-            autoBtn.setText("stop");
-        }else {
-            autoBtn.setText("start");
-        }
 
-    }
 
-    public void nextAction() {
-        if (!auto) nextStep();
-    }
 
-    public void autoAction() {
-        switchAutoRun();
-    }
 
-    public Boolean getAuto() {
-        return auto;
-    }
 
-    public void nextStep(){
 
-    }
-
-    protected void setAllDone(){
-        for (int i = 0; i < DataList.size; i++){
-            changeColor(i, "green");
-        }
-    }
-
-    protected void switchIndexTo(int target, int current) {
-        if (target > current) {
-            while (current != target) {
-                switchIndexes(current, current + 1);
-                current++;
-            }
-        }else {
-            while (current != target) {
-                switchIndexes(current, current - 1);
-                current--;
-            }
-        }
-
-    }
 }

@@ -8,7 +8,7 @@ import java.util.ResourceBundle;
 /**
  * Created by rik on 6-3-17.
  */
-public class InsertionSort extends ChartTabController {
+public class InsertionSort extends SortInterface {
 
     private boolean done = false;
     private int step = 1;
