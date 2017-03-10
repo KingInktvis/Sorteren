@@ -45,23 +45,31 @@ public class BubbleSort extends SortInterface {
                 done = false;
                 break;
             case 4:
-                changeColor(compareIndex, "grey");
-                changeColor(compareIndex + 1, "grey");
-                if (compareIndex + 2 >= goodAfter) {
-                    if (done) {
-                        setAllDone();
-                        auto = false;
-                        complete = true;
-                    }
-                    compareIndex = 0;
-                    done = true;
-                    if (goodAfter > 1) goodAfter--;
-                    changeColor(goodAfter, "green");
-                } else {
-                    compareIndex++;
-                }
+                nextRound();
                 break;
         }
         step = step == 4 ? 1 : step + 1;
+    }
+
+    private void isFinisfed(){
+        if (done) {
+            setAllDone();
+            auto = false;
+            complete = true;
+        }
+    }
+
+    private void nextRound(){
+        changeColor(compareIndex, "grey");
+        changeColor(compareIndex + 1, "grey");
+        if (compareIndex + 2 >= goodAfter) {
+            isFinisfed();
+            compareIndex = 0;
+            done = true;
+            if (goodAfter > 1) goodAfter--;
+            changeColor(goodAfter, "green");
+        } else {
+            compareIndex++;
+        }
     }
 }
