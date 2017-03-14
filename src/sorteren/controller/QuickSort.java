@@ -39,6 +39,7 @@ public class QuickSort extends SortInterface{
                 }
                 break;
             case 4:
+                changeColor(compare, "grey");
                 switchIndexTo(pivot, compare);
                 changeColor(pivot, "grey");
                 pivot++;
